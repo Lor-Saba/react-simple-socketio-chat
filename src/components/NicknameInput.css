@@ -1,0 +1,9 @@
+#nickname-input {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+}
+
+#nickname-input input {
+  width: 100%;
+}

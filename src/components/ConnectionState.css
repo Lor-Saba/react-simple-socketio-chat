@@ -1,0 +1,26 @@
+.cs {
+  color: #666;
+  background-color: #eee;
+  padding: .3rem .8rem;
+  border-radius: 5px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cs small {
+  background: #fff;
+  color: #555;
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-family: monospace;
+}
+
+.cs-connected {
+  color: color-mix(in oklab, #0a3 80%, #fff);
+  background-color: color-mix(in oklab, #0a3 20%, #fff);
+}
+.cs-disconnected {
+  color: color-mix(in oklab, #a03 80%, #fff);
+  background-color: color-mix(in oklab, #a03 20%, #fff);
+}

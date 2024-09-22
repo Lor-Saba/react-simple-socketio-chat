@@ -1,0 +1,38 @@
+.chat-form {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  padding: .7em;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  outline: 1px solid #ddd;
+  border: 0;
+  animation: show-chat-form .4s;
+  animation-fill-mode: forwards;
+}
+.chat-form:has(textarea:hover) {
+  outline: 1px solid #ccc;
+}
+.chat-form:has(textarea:focus) {
+  outline: 1px solid #079;
+}
+.chat-form textarea {
+  width: -webkit-fill-available;
+  resize: none;
+  padding: 0;
+  outline: none !important;
+  width: 100%;
+}
+.chat-form button {
+  border-radius: 6px;
+  border-bottom-right-radius: 0;
+}
+
+@keyframes show-chat-form {
+  0% { 
+    opacity: 0; 
+  }
+  100% { 
+    opacity: 1; 
+  }
+}

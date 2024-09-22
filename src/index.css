@@ -1,0 +1,78 @@
+html {
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  padding: 25px;
+  font-size: 1rem;
+  font-family: "SUSE", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background: #f1f5fa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-style: normal;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Inputs / Textarea */
+
+.itxt {
+  outline: 1px solid #ddd;
+  border: 0;
+  background-color: #fff;
+  color: #222;
+  resize: none;
+  padding: 1rem;
+  border-radius: 4px;
+}
+.itxt:hover {
+  outline: 1px solid #bbb;
+}
+.itxt:focus {
+  outline: 1px solid #079;
+}
+
+
+/* Buttons */
+
+.btn {
+  outline: none;
+  border: 0;
+  background-color: #eee;
+  color: #222;
+  display: inline-flex;
+  align-items: center;
+  height: 35px;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  padding: 0 1rem;
+  border-radius: 4px;
+  box-shadow: inset 0 -1px rgba(0, 0, 0, .1);
+  cursor: pointer;
+}
+.btn:hover {
+  filter: brightness(0.95);
+}
+.btn[class*="btn-"]:hover {
+  filter: brightness(1.1);
+}
+
+.btn-primary {
+  background-color: #079;
+  color: #fff;
+}
+.btn-secondary {
+  background-color: #797;
+  color: #fff;
+}

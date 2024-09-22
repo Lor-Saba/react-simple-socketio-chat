@@ -1,0 +1,18 @@
+.App {
+  max-width: 400px;
+  height: 130px;
+  max-height: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 90, .1);
+  background-color: #fff;
+  transition: height .3s;
+}
+
+.App.connected {
+  height: calc(100vh - 100px);
+  transition-duration: .6s;
+}
