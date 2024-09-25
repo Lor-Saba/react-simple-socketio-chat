@@ -6,7 +6,3 @@ const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhos
 export const socket = io(URL, {
   autoConnect: false
 });
-
-export function getSocketId(){
-  return socket.id;
-}

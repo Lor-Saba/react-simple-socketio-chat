@@ -1,15 +1,18 @@
+import { useContext } from 'react';
+import { ChatContext } from '../store/chat-context';
+
 import './ConnectionManager.css';
 
-export function ConnectionManager({ isConnected, onToggleConnection }) {
+export function ConnectionManager() {
+  const { isConnected, updateConnectedState } = useContext(ChatContext);
+
   return (
-    <>
-      <div className="connection-manager">
-        { isConnected ?
-          <button className='btn' onClick={ () => onToggleConnection('disconnect') }>Disconnect</button>
-          :
-          <button className='btn btn-primary' onClick={ () => onToggleConnection('connect') }>Connect</button>
-        }
-      </div>
-    </>
+    <div className="connection-manager">
+      { isConnected ?
+        <button className='btn' onClick={ () => updateConnectedState('disconnect') }>Disconnect</button>
+        :
+        <button className='btn btn-primary' onClick={ () => updateConnectedState('connect') }>Connect</button>
+      }
+    </div>
   );
 }

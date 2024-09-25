@@ -1,13 +1,14 @@
-
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext, useEffect } from 'react';
+import { ChatContext } from '../store/chat-context';
 import { socket } from '../socket';
 import './ChatForm.css';
 
-export function ChatForm({ nickname }){
+export function ChatForm(){
+  const form = useRef(null);
   const formButton = useRef(null);
-  const [value, setValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
+  const formInput = useRef(null);
+  const [ isLoading, setIsLoading ] = useState(false);
+  const { nickname } = useContext(ChatContext);
 
   function handleKeyPress(event) {
     if (event.code === "Enter" || event.code === "NumpadEnter") {
@@ -20,20 +21,30 @@ export function ChatForm({ nickname }){
     event.preventDefault();
     event.stopPropagation();
 
+    const messageData = { 
+      id: socket.id, 
+      nickname: nickname, 
+      text: formInput.current.value
+    };
+
     setIsLoading(true);
 
-    socket.emit('message', { id: socket.id, text: value, nickname: nickname }, () => {
-      setValue('');
+    socket.emit('message', messageData, () => {
       setIsLoading(false);
+      form.current.reset();
     });
   }
+  
+  useEffect(() => {
+    formInput.current.focus();
+
+    return () => {};
+  }, [isLoading]);
 
   return (
-    <>
-      <form className="chat-form" disabled={isLoading} onSubmit={handleSubmit}>
-        <textarea ref={input => input?.focus()} className='itxt' disabled={isLoading} value={value} onChange={ e => setValue(e.target.value) } onKeyDown={handleKeyPress} required></textarea>
-        <button ref={formButton} className='btn btn-primary' type="submit" disabled={isLoading}>Send</button>
-      </form>
-    </>
+    <form ref={form} className="chat-form" disabled={isLoading} onSubmit={handleSubmit}>
+      <textarea ref={formInput} className='itxt' disabled={isLoading} onKeyDown={handleKeyPress} required></textarea>
+      <button ref={formButton} className='btn btn-primary' type="submit" disabled={isLoading}>Send</button>
+    </form>
   )
 }

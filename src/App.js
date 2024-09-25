@@ -5,6 +5,8 @@ import { Messages } from './components/Messages';
 import { ChatForm } from './components/ChatForm';
 import { NicknameInput } from './components/NicknameInput';
 
+import { ChatContext } from './store/chat-context';
+
 import './App.css';
 
 const NICKNAME_MIN_LENGTH = 4;
@@ -49,10 +51,17 @@ function App() {
     setNickname(value);
   }
 
+  const chatCtx = { 
+    isConnected: isConnected,
+    nickname: nickname,
+    updateConnectedState: handleToggleConnection,
+    updateNickname: handleNicknameChange
+  };
+
   return (
-    <>
+    <ChatContext.Provider value={chatCtx}>
       <div className={ 'App' + (isConnected ? ' connected': '') }>
-        <Header isConnected={isConnected} onToggleConnection={handleToggleConnection}/>
+        <Header/>
         { 
           isConnected ? 
             <>
@@ -60,10 +69,10 @@ function App() {
               <ChatForm nickname={nickname}/>
             </>
           : 
-            <NicknameInput onChange={handleNicknameChange} minLength={NICKNAME_MIN_LENGTH} onEnter={() => handleToggleConnection('connect')}/>
+            <NicknameInput minLength={NICKNAME_MIN_LENGTH}/>
         }
       </div>
-    </>
+    </ChatContext.Provider>
   );
 }
 
