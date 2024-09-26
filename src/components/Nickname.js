@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { ChatContext } from '../store/chat-context';
 
-import './NicknameInput.css';
+import './Nickname.css';
 
-export function NicknameInput({ minLength }) {
+export function Nickname() {
   const { 
     nickname,
+    nicknameMinLength,
     updateConnectedState, 
     updateNickname 
   } = useContext(ChatContext);
@@ -23,7 +24,15 @@ export function NicknameInput({ minLength }) {
 
   return (
     <div id="nickname-input">
-      <input type="text" className="itxt" placeholder="Nickname" maxLength="12" defaultValue={nickname} minLength={minLength} onChange={handleChange} onKeyDown={handleKeyPress}></input>
+      <input 
+        type="text" 
+        className="itxt" 
+        placeholder="Nickname" 
+        maxLength="12" 
+        minLength={nicknameMinLength} 
+        defaultValue={nickname} 
+        onChange={handleChange} 
+        onKeyDown={handleKeyPress}></input>
     </div>
   );
 }

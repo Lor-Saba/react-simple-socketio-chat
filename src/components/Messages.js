@@ -85,13 +85,13 @@ export function Messages() {
         { messages.map((message, index) =>
             <li key={ index } 
                 style={{ 
-                  background: socket.id !== message.id && stringToColour(message.nickname) 
+                  background: socket.id !== message.id && stringToColour(message.nickname + message.id) 
                 }} 
                 className={classNames({
                   'self': socket.id === message.id,
                   'other': socket.id !== message.id,
                   'tailed': message.id !== messages[index + 1]?.id,
-                  'compact': message.nickname === messages[index - 1]?.nickname
+                  'compact': message.id === messages[index - 1]?.id
                 })}
             >
               <label>{ message.nickname }</label>
