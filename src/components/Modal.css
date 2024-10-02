@@ -1,0 +1,38 @@
+dialog {
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.2);
+  animation: show-dialog .5s;
+  animation-fill-mode: forwards;
+}
+dialog::backdrop {
+  background-color: rgba(4, 4, 16, .4);
+  backdrop-filter: blur(5px);
+  animation: show-dialog-backdrop .5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show-dialog {
+  from { transform: translateY(15px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
+}
+@keyframes show-dialog-backdrop {
+  from { background-color: rgba(4, 4, 16, 0); }
+  to { background-color: rgba(4, 4, 16, .4); }
+}
+
+dialog h2 {
+  margin: 0 0 .6em;
+}
+dialog h2:empty {
+  display: none;
+}
+
+dialog p {
+  margin: 0 0 1.5em;
+}
+
+dialog div {
+  display: flex;
+  justify-content: flex-end;
+}

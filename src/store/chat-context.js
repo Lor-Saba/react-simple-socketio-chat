@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { socket } from '../socket';
 import { createContext } from "react";
+import Modal from '../components/Modal';
 
 const NICKNAME_MIN_LENGTH = 4;
 
@@ -21,9 +22,12 @@ export const ChatContext = createContext({
   updateNickname: (newNickname) => {}
 });
 
+const MODAL_CONFIG_DEFAULT = { open: false, text: '', title: ''};
+
 export default function ChatContextProvider({ children }){
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [nickname, setNickname] = useState('');
+  const [modalConfig, setModalConfig] = useState({...MODAL_CONFIG_DEFAULT});
 
   useEffect(() => {
     function onConnect() {
@@ -50,7 +54,12 @@ export default function ChatContextProvider({ children }){
       if (nickname.length >= NICKNAME_MIN_LENGTH) {
         socket.connect();
       } else {
-        alert(`Nickname not valid (min ${NICKNAME_MIN_LENGTH} characters)`);
+        setModalConfig({ 
+          open: true, 
+          title: 'Warning' ,
+          text: `Nickname not valid (min ${NICKNAME_MIN_LENGTH} characters)`
+        });
+        //alert(`Nickname not valid (min ${NICKNAME_MIN_LENGTH} characters)`);
       }
     } else {
       socket.disconnect();
@@ -74,6 +83,7 @@ export default function ChatContextProvider({ children }){
       <ChatContext.Consumer>
         {children}
       </ChatContext.Consumer>
+      <Modal {...modalConfig} onClose={() => setModalConfig({...MODAL_CONFIG_DEFAULT})}/>
     </ChatContext.Provider>
   );
 }
